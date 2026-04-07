@@ -1,0 +1,9 @@
+## realtime
+- 2025_ACM TIoT_Uncovering_Underexplored_Runtime_Behaviors_in_ROS2-Based_Autonomous_Systems
+- 2025_ECRTS_First_Look_at_ROS2_Applications_Written_in_Async_Rust
+- 2025_IEEE_Access_End-to-End_Latency_Optimization_for_Containerized_ROS_2_Autonomous_Driving_Software
+
+## probability
+-
+-
+-
