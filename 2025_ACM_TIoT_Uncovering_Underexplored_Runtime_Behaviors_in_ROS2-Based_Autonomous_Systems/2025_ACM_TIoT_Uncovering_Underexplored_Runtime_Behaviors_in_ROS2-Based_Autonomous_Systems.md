@@ -5,6 +5,9 @@
 - **著者**: Chenghao Fan, Lanshun Nie, Jiacheng Zhang, Kun Dai, Shenghan Gao, Jing Li
 - **所属**: Harbin Institute of Technology / New Jersey Institute of Technology
 - **掲載**: ACM Transactions on Internet of Things, 2025年10月
+
+[Paper Link](https://dl.acm.org/doi/epdf/10.1145/3772083)
+
 ---
 
 ## 1. 研究の背景と動機

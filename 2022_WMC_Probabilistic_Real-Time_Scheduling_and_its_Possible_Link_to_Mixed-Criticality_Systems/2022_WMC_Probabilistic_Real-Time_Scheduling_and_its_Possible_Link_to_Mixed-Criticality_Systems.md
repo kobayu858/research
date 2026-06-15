@@ -2,6 +2,7 @@
 
 **著者:** Georg von der Brüggen, Sergey Bozhko, Mario Günzel, Kuan-Hsun Chen, Jian-Jia Chen, Björn B. Brandenburg
 **所属:** TU Dortmund University / Max Planck Institute for Software Systems (MPI-SWS) / University of Twente
+[Paper Link](https://people.mpi-sws.org/~bbb/papers/pdf/wmc22.pdf)
 
 ---
 

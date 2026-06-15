@@ -4,6 +4,8 @@
 - 著者：Martin Škoudlil, Michal Sojka, Zdeněk Hanzálek（チェコ工科大学）
 - 会議：ECRTS 2025（37th Euromicro Conference on Real-Time Systems）
 
+[Paper Link](https://dl.acm.org/doi/epdf/10.1145/3772083)
+
 ---
 
 ## 1. 論文の概要

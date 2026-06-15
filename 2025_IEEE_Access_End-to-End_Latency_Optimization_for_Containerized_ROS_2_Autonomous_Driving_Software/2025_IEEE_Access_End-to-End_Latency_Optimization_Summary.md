@@ -4,6 +4,8 @@
 **所属:** Technical University of Munich (TUM) / Technical University of Dortmund  
 **掲載:** IEEE Access, 2025 (DOI: 10.1109/ACCESS.2025.3582868)
 
+[Paper Link](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=11048781)
+
 ---
 
 ## 1. 研究の背景と動機
