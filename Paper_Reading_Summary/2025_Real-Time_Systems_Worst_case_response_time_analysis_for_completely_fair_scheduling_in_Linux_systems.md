@@ -6,10 +6,7 @@
 
 **所属**: Seoul National University 
 
-
 **掲載**: Real-Time Systems (2025) 61:118-158 
-
-
 
 [Paper Link](https://link.springer.com/article/10.1007/s11241-025-09435-x)
 
