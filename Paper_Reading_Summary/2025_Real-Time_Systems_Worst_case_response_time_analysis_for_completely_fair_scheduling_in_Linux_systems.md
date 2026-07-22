@@ -380,9 +380,7 @@ $$
 したがって、
 
 $$
-\text{ $\tau_j$ の最大CPU使用時間}
-=
-\text{ $\tau_i$ への最大干渉時間}
+\text{ $\tau_j$ の最大CPU使用時間}=\text{ $\tau_i$ への最大干渉時間}
 $$
 
 として扱えます。
@@ -428,12 +426,7 @@ $$
 対象タスクの応答時間$R_i$内に到着できる $\tau_j$ の最大ジョブ数を、次のように求めます。
 
 $$
-\tilde{N}_j(R_i)
-=
-\min\left(
-\left\lceil\frac{R_i}{T_j}\right\rceil+1,
-\left\lceil\frac{\mathcal L_i}{T_j}\right\rceil
-\right)
+\tilde{N}_j(R_i)=\min\left(\left\lceil\frac{R_i}{T_j}\right\rceil+1,\left\lceil\frac{\mathcal L_i}{T_j}\right\rceil\right)
 $$
 
 ここで、
@@ -451,9 +444,7 @@ $$
 最大ジョブ数に、1ジョブ当たりのWCET $C_j$を掛けます。
 
 $$
-\tilde{W}_j(R_i)
-=
-\tilde{N}_j(R_i)\cdot C_j
+\tilde{W}_j(R_i)=\tilde{N}_j(R_i)\cdot C_j
 $$
 
 これが、対象区間内に $\tau_j$ が持ち得る仕事量の上限です。
@@ -468,14 +459,7 @@ $$
 の小さい方とします。
 
 $$
-\boxed{
-\tilde{\mathcal I}(\tau_j\rightarrow\tau_i,R_i)
-=
-\min\left(
-\mathcal I_{vruntime}(\tau_j\rightarrow\tau_i),
-\tilde{W}_j(R_i)
-\right)
-}
+\boxed{\tilde{\mathcal I}(\tau_j\rightarrow\tau_i,R_i)=\min\left(\mathcal I_{vruntime}(\tau_j\rightarrow\tau_i),\tilde{W}_j(R_i)\right)}
 $$
 
 先ほどの例では、
@@ -499,10 +483,7 @@ CFSでは、固定優先度方式と異なり、同じCPU上のすべての実�
 そこで、対象タスク以外のすべてのタスクについて最大干渉時間を求め、それらを合計します。
 
 $$
-\tilde{\mathcal I}_{total}(\tau_i,R_i)
-=
-\sum_{\tau_j\in\mathcal T\setminus\{\tau_i\}}
-\tilde{\mathcal I}(\tau_j\rightarrow\tau_i,R_i)
+\tilde{\mathcal I}_{total}(\tau_i,R_i)=\sum_{\tau_j\in\mathcal T\setminus\{\tau_i\}}\tilde{\mathcal I}(\tau_j\rightarrow\tau_i,R_i)
 $$
 
 記号の意味は次のとおりです。
@@ -553,7 +534,7 @@ $$
 
 #### 応答時間によって干渉量が変わる
 
-干渉時間は、対象タスクの応答時間$R_i$によって変化します。
+干渉時間は、対象タスクの応答時間 $R_i$ によって変化します。
 
 ```text
 応答時間が長くなる
@@ -572,12 +553,7 @@ $$
 対象タスク $\tau_i$ の応答時間は、自身の実行時間と、すべての他タスクから受ける干渉時間の合計として求めます。
 
 $$
-\tilde{R}_i
-=
-C_i
-+
-\sum_{\tau_j\in\mathcal T\setminus\{\tau_i\}}
-\tilde{\mathcal I}(\tau_j\rightarrow\tau_i,\tilde{R}_i)
+\tilde{R}_i=C_i+\sum_{\tau_j\in\mathcal T\setminus\{\tau_i\}}\tilde{\mathcal I}(\tau_j\rightarrow\tau_i,\tilde{R}_i)
 $$
 
 ここで、
@@ -590,7 +566,7 @@ $$
 
 #### なぜ反復計算が必要なのか
 
-求めたい$\tilde{R}_i$が、式の左辺と右辺の干渉時間の両方に現れています。
+求めたい $\tilde{R}_i$ が、式の左辺と右辺の干渉時間の両方に現れています。
 
 応答時間を長く仮定すると、その間に他タスクのジョブがより多く到着できるため、干渉時間も増える可能性があります。その結果、応答時間の推定値がさらに長くなります。
 
@@ -615,16 +591,7 @@ $$
 その後、現在の応答時間の推定値を使って干渉時間を求め、次の値へ更新します。
 
 $$
-\tilde{R}_i^{(k+1)}
-=
-C_i
-+
-\sum_{\tau_j\in\mathcal T\setminus\{\tau_i\}}
-\tilde{\mathcal I}
-\left(
-\tau_j\rightarrow\tau_i,
-\tilde{R}_i^{(k)}
-\right)
+\tilde{R}_i^{(k+1)}=C_i+\sum_{\tau_j\in\mathcal T\setminus\{\tau_i\}}\tilde{\mathcal I}\left(\tau_j\rightarrow\tau_i,\tilde{R}_i^{(k)}\right)
 $$
 
 この計算を、次のいずれかになるまで繰り返します。
@@ -632,7 +599,7 @@ $$
 1. **値が変化しなくなった場合**  
    固定点に収束したため、その値を推定WCRT $\tilde{R}_i$とします。
 
-2. **デッドライン$D_i$を超えた場合**  
+2. **デッドライン $D_i$ を超えた場合**  
    この解析では、対象タスクがデッドラインを守ることを保証できないと判定します。
 
 #### 数値例
@@ -685,7 +652,7 @@ $$
 
 #### 反復計算が終了する理由
 
-応答時間の推定値が長くなっても、計算される最大干渉時間が小さくなることはありません。そのため、反復中の$\tilde{R}_i$は単調に増加します。
+応答時間の推定値が長くなっても、計算される最大干渉時間が小さくなることはありません。そのため、反復中の $\tilde{R}_i$ は単調に増加します。
 
 時間は離散値として扱われるため、反復計算は、固定点に収束するか、デッドラインを超えた時点で終了します。
 
@@ -698,7 +665,7 @@ CFSでは、各タスクに設定されたnice値から重みが決まり、そ�
 - **nice値が小さいタスク**：重みが大きく、CPU時間を多く受け取る
 - **nice値が大きいタスク**：重みが小さく、CPU時間が少なくなる
 
-Linuxのnice値は$-20$から$+19$までの40段階です。nice値が1小さくなると、重みはおよそ1.25倍になります。そのため、各タスクへのnice値の割り当てによって、WCRTとスケジュール可能性が変わります。
+Linuxのnice値は $-20$ から $+19$ までの40段階です。nice値が1小さくなると、重みはおよそ1.25倍になります。そのため、各タスクへのnice値の割り当てによって、WCRTとスケジュール可能性が変わります。
 
 本論文では、より多くのタスクがデッドラインを守れるように、次の2つのnice値割り当て手法を提案しています。
 
@@ -720,16 +687,7 @@ Linuxのnice値は$-20$から$+19$までの40段階です。nice値が1小さく
 各タスクのnice値を、次の式で求めます。
 
 $$
-nice_i
-=
-\max\left(
--20,\;
-19+
-\lambda
-\left\lceil
-\ln\frac{D_i}{D_{max}}
-\right\rceil
-\right)
+nice_i=\max\left(-20,\;19+\lambda\left\lceil\ln\frac{D_i}{D_{max}}\right\rceil\right)
 $$
 
 ここで、
@@ -766,15 +724,15 @@ $\lambda$は、タスク間のnice値の差を調整します。
 
 #### 探索手順
 
-1. 最大のデッドライン$D_{max}$を求める
-2. $\lambda$を最小値$\lambda_{min}$に設定する
+1. 最大のデッドライン $D_{max}$ を求める
+2. $\lambda$ を最小値 $\lambda_{min}$ に設定する
 3. 式を使って全タスクのnice値を計算する
 4. 5章のWCRT解析で、全タスクがスケジュール可能か判定する
 5. スケジュール可能なら、そのnice値を採用する
-6. 不可能なら、 $\lambda$を$\lambda_{gap}$だけ増やして再計算する
-7. $\lambda_{max}$まで試しても成功しなければ、割り当てに失敗したと判定する
+6. 不可能なら、 $\lambda$ を $\lambda_{gap}$ だけ増やして再計算する
+7. $\lambda_{max}$ まで試しても成功しなければ、割り当てに失敗したと判定する
 
-$\lambda_{gap}$は、 $\lambda$を変化させる刻み幅です。小さくすると細かく探索できますが、WCRT解析の実行回数が増えます。
+$\lambda_{gap}$ は、 $\lambda$ を変化させる刻み幅です。小さくすると細かく探索できますが、WCRT解析の実行回数が増えます。
 
 ```text
 λを小さな値から開始
@@ -788,13 +746,13 @@ WCRT解析で判定
 採用       λを増やして再試行
 ```
 
-この方法は、スケジュール可能になる最小の$\lambda$を探します。必要以上にnice値の差を広げないことで、リアルタイム要求を満たしながら、低優先度タスクの応答性も維持します。
+この方法は、スケジュール可能になる最小の $\lambda$ を探します。必要以上にnice値の差を広げないことで、リアルタイム要求を満たしながら、低優先度タスクの応答性も維持します。
 
 > **特徴**：計算が速く、割り当て理由も分かりやすい一方、デッドラインだけを基準にするため、必ずしも最良の組み合わせが得られるとは限りません。
 
 ### 6.2 遺伝的アルゴリズム
 
-nice値は1タスクにつき40通りあります。タスク数を$n$とすると、nice値の組み合わせは、
+nice値は1タスクにつき40通りあります。タスク数を $n$ とすると、nice値の組み合わせは、
 
 $$
 40^n
@@ -903,7 +861,7 @@ WCRT解析で評価
 | 各条件のタスクセット数 | 100 |
 | 合計 | 2000タスクセット |
 | タスクの周期 | 30 ms〜3 s |
-| デッドライン | 周期と同じ値（$D_i=T_i$） |
+| デッドライン | 周期と同じ値（ $D_i=T_i$ ） |
 | 各ジョブの実行時間 | WCET $C_i$ |
 
 各タスクセットは、周期の最小公倍数であるハイパーピリオドの2倍の時間だけ実行またはシミュレーションします。
