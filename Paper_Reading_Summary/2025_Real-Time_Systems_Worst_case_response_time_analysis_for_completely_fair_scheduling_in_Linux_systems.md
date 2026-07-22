@@ -423,7 +423,7 @@ $$
 
 #### 到着できる最大ジョブ数
 
-対象タスクの応答時間$R_i$内に到着できる $\tau_j$ の最大ジョブ数を、次のように求めます。
+対象タスクの応答時間 $R_i$ 内に到着できる $\tau_j$ の最大ジョブ数を、次のように求めます。
 
 $$
 \tilde{N}_j(R_i)=\min\left(\left\lceil\frac{R_i}{T_j}\right\rceil+1,\left\lceil\frac{\mathcal L_i}{T_j}\right\rceil\right)
